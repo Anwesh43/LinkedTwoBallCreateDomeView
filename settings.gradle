@@ -1,0 +1,3 @@
+include ':twoballcreatedomeview'
+include ':app'
+rootProject.name = "LinkedTwoBallCreateDomeView"
