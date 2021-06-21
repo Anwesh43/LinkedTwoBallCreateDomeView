@@ -19,13 +19,13 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.02f / parts
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 3.9f
 val delay : Long = 20
 val deg : Float = 180f
 val startDeg : Float = 270f
-val sweepDeg : Float = 60f
+val sweepDeg : Float = 80f
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rFactor : Float = 18.4f
 
@@ -40,16 +40,20 @@ fun Canvas.drawTwoBallCreateDome(scale : Float, w : Float, h : Float, paint : Pa
     val sc2 : Float = scale.divideScale(1, parts)
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
+    val d : Float = sweepDeg * sc3
     save()
     translate(w / 2 + (w / 2 + size) * sc4, h / 2)
     rotate(deg * sc4)
     drawLine(0f, 0f, 0f, -size * sc2, paint)
     for (j in 0..1) {
+        paint.style = Paint.Style.FILL
         save()
         rotate(sweepDeg * 0.5f * (1 - 2 * j) * sc3)
         drawCircle(0f, -size * sc2, r * sc1, paint)
         restore()
     }
+    paint.style = Paint.Style.STROKE
+    drawArc(RectF(-size, -size, size, size), startDeg - d / 2 , d, false, paint)
     restore()
 }
 
