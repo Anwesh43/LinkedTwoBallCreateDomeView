@@ -213,4 +213,13 @@ class TwoBallCreateDomeView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TwoBallCreateDomeView {
+            val view : TwoBallCreateDomeView = TwoBallCreateDomeView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
